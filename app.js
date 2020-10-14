@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const exhbs = require('express-handlebars')
 const mongoose = require('mongoose')
-
+const bodyParser = require('body-parser')
 const Rest = require('./models/restaurant')
 const port = 3000
 
@@ -18,6 +18,8 @@ db.once('open', () => {
 
 //set static folder
 app.use(express.static('public'))
+//set body-parser
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //set template engine
 app.engine('hbs', exhbs({ defaultLayout: 'main', extname: '.hbs' }))
@@ -44,6 +46,7 @@ app.get('/restaurants/:id', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.toLowerCase()
   // 不會使用mongoose-find的includes的功能
+
   Rest.find()
     .lean()
     .then(rests => {
@@ -54,6 +57,18 @@ app.get('/search', (req, res) => {
     })
     .catch(error => console.error(error))
 })
+
+// 新增餐廳清單
+app.get('/new', (req, res) => {
+  res.render('new')
+})
+app.post('/restaurants', (req, res) => {
+  const body = req.body
+  return Rest.create(body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
 
 app.listen(port, () => {
   console.log(`This Server is start on http://localhost:${port}`)
