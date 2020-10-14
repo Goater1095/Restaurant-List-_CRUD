@@ -2,8 +2,20 @@ const { static } = require('express')
 const express = require('express')
 const app = express()
 const exhbs = require('express-handlebars')
+const mongoose = require('mongoose')
+
 const resList = require('./restaurant.json')
 const port = 3000
+
+// DB server set
+mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
+const db = mongoose.connection
+db.on('error', () => {
+  console.log('mongodb error!')
+})
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
 
 app.use(express.static('public'))
 
