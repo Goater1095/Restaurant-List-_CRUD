@@ -25,7 +25,7 @@
       <div class="card-columns">
 
         {{#each resList}}
-        <a href="/restaurants/{{this.id}}" class="text-secondary">
+        <a href="/restaurants/{{this._id}}" class="text-secondary">
           <div class="card mb-3">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
             <div class="card-body p-3">
@@ -39,9 +39,11 @@
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
 
-                <a class="btn btn-secondary btn-sm ml-5" href="./new" role="button">Edit</a>
-                <a class="btn btn-secondary  btn-sm" href="./restaurants/{{this.id}}" role="button">Detail</a>
-                <a class="btn btn-secondary btn-sm" href="#" role="button">Delete</a>
+                <a class="btn btn-light rounded-circle btn-sm ml-5" href="./restaurants/{{this._id}}/edit"
+                  role="button">Edit</a>
+                <a class="btn btn-light rounded-circle btn-sm" href="./restaurants/{{this._id}}"
+                  role="button">Detail</a>
+                <a class="btn btn-light rounded-circle btn-sm" href="#" role="button">Delete</a>
 
 
               </span>

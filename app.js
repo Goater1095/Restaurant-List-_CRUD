@@ -36,9 +36,10 @@ app.get("/", (req, res) => {
     .catch((error) => console.error(error));
 });
 
+//detail page
 app.get("/restaurants/:id", (req, res) => {
   const id = req.params.id;
-  Rest.find({ id: id })
+  Rest.find({ _id: id })
     .lean()
     .then(function (rest) {
       res.render("show", { rest: rest[0] });
@@ -49,7 +50,6 @@ app.get("/restaurants/:id", (req, res) => {
 app.get("/search", (req, res) => {
   const keyword = req.query.keyword.toLowerCase();
   // 不會使用mongoose-find的includes的功能
-
   Rest.find()
     .lean()
     .then((rests) => {
@@ -70,6 +70,7 @@ app.get("/search", (req, res) => {
 app.get("/new", (req, res) => {
   res.render("new");
 });
+
 app.post("/restaurants", (req, res) => {
   const body = req.body;
   return Rest.create(body)
@@ -77,6 +78,30 @@ app.post("/restaurants", (req, res) => {
     .catch((error) => console.error(error));
 });
 
+//修改清單
+app.get("/restaurants/:id/edit", (req, res) => {
+  const id = req.params.id;
+  return Rest.findById(id)
+    .lean()
+    .then(function (rest) {
+      res.render("edit", { rest });
+    })
+    .catch((error) => console.error(error));
+});
+
+app.post("/restaurants/:id/edit", (req, res) => {
+  const id = req.params.id;
+  return Rest.findById(id)
+    .then((rest) => {
+      rest = Object.assign(rest, req.body);
+      rest.save();
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch((error) => console.error(error));
+});
+//刪除清單
+
+//啟動server
 app.listen(port, () => {
   console.log(`This Server is start on http://localhost:${port}`);
 });

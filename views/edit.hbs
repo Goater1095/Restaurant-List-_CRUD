@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/stylesheets/style-show.css">
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 mx-auto">
+
+      <form action="/restaurants/{{rest._id}}/edit" method="POST" class="mt-3">
+        <p class="mb-1">
+          <span class="text-secondary">
+            中文名稱：
+          </span>
+          <input class="form-control" type="text" name="name" value="{{ rest.name }}">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            英文名稱：
+          </span>
+          <input class="form-control" type="text" name="name_en" value="{{ rest.name_en }}">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            類別：
+          </span>
+          <input class="form-control" type="text" name="category" value="{{ rest.category }}">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            圖片網址：
+          </span>
+          <input class="form-control" type="text" name="image" value="{{ rest.image }}">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            地址：
+          </span>
+          <input class="form-control" type="text" name="location" value="{{ rest.location}}">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            電話：
+          </span>
+          <input class="form-control" type="text" name="phone" value="{{ rest.phone }}">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            Google Map 位址：
+          </span>
+          <input class="form-control" type="text" name="google_map" value="{{ rest.google_map }}">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            評分：
+          </span>
+          <input class="form-control" type="text" name="rating" value="{{ rest.rating }}">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            描述：
+          </span>
+          <input class="form-control" type="text" name="description" value="{{ rest.description }}">
+        </p>
+        <button type="submit" class="my-2">確認修改</button>
+      </form>
+
+    </div>
+  </div>
+</div>
