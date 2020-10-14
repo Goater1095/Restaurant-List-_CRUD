@@ -1,10 +1,9 @@
-const { static } = require('express')
 const express = require('express')
 const app = express()
 const exhbs = require('express-handlebars')
 const mongoose = require('mongoose')
 
-const resList = require('./restaurant.json')
+const Rest = require('./models/restaurant')
 const port = 3000
 
 // DB server set
@@ -17,28 +16,43 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+//set static folder
 app.use(express.static('public'))
 
+//set template engine
 app.engine('hbs', exhbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
+//set route
 app.get('/', (req, res) => {
-  res.render('index', { resList: resList.results })
+  Rest.find()
+    .lean()
+    .then(rests => res.render('index', { resList: rests }))
+    .catch(error => console.error(error))
 })
 
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  const findRes = resList.results.find(rest => rest.id.toString() === id)
-  console.log(id)
-  res.render('show', { rest: findRes })
+  Rest.find({ id: id })
+    .lean()
+    .then(function (rest) {
+      res.render('show', { rest: rest[0] })
+    })
+    .catch(error => console.error(error))
 })
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.toLowerCase()
-  const searchRes = resList.results.filter(rest => rest.name.toLowerCase().includes(keyword))
-  const searchRes2 = resList.results.filter(rest => rest.category.toLowerCase().includes(keyword))
-  const searchResult = searchRes.concat(searchRes2)
-  res.render('index', { resList: searchResult, keyword })
+  // 不會使用mongoose-find的includes的功能
+  Rest.find()
+    .lean()
+    .then(rests => {
+      const searchRes = rests.filter(rest => rest.name.toLowerCase().includes(keyword))
+      const searchRes2 = rests.filter(rest => rest.category.toLowerCase().includes(keyword))
+      const searchResult = searchRes.concat(searchRes2)
+      res.render('index', { resList: searchResult, keyword })
+    })
+    .catch(error => console.error(error))
 })
 
 app.listen(port, () => {
