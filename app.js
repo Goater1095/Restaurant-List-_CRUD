@@ -100,6 +100,16 @@ app.post("/restaurants/:id/edit", (req, res) => {
     .catch((error) => console.error(error));
 });
 //刪除清單
+app.post("/restaurants/:id/delete", (req, res) => {
+  const id = req.params.id;
+  return Rest.findById(id)
+    .then((rest) => rest.remove())
+    .then(() => res.redirect(`/`))
+    .catch((error) => console.error(error));
+});
+
+
+
 
 //啟動server
 app.listen(port, () => {

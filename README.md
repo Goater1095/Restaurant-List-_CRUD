@@ -1,4 +1,4 @@
-# Restaurant-List (餐廳清單)
+# Restaurant-List CRUD (餐廳清單)
 
 一個使用 Express + node.js 建立的餐廳清單
 
@@ -15,7 +15,12 @@
   電話
   描述
   圖片
-- 使用者可以透過搜尋餐廳名稱來找到特定的餐廳
+- 使用者可以透過"搜尋餐廳名稱"來找到特定的餐廳
+- 使用者可以透過"新增餐廳清單"來建立特定的餐廳
+- 使用者可以透過"Edit button" & "修改餐廳內容" 變更餐廳的詳細資訊
+- 使用者可以透過"Detail button"進入看餐廳的詳細資訊
+- 使用者可以透過"Delete button" & "刪除餐廳" 移除不想要的餐廳
+
 
 ### 安裝
 
@@ -50,3 +55,7 @@ npm run dev  //執行程式
 - Node.js - 執行環境
 - Express - 應用程式架構
 - Express-Handlebars - 模板引擎
+- Body-Parser - url-encoded
+- MongoDB - Data base
+- Mongoose - ODM for MongoDB
+

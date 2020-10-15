@@ -5,8 +5,12 @@
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
       <div class="d-flex justify-content-end">
-        <a class="btn btn-outline-info btn-sm mr-0" href="./{{rest._id}}/edit" role="button">修改餐廳內容</a>
+        <a class="btn btn-outline-info btn-sm mr-3" href="./{{rest._id}}/edit" role="button">修改餐廳內容</a>
+        <form action="/restaurants/{{rest._id}}/delete" style="display: inline;" method="POST">
+          <button type="submit" class="btn btn-outline-info btn-sm">刪除餐廳</button>
+        </form>
       </div>
+
 
       <p class="mb-1">
         <span class="text-secondary">

@@ -43,7 +43,10 @@
                   role="button">Edit</a>
                 <a class="btn btn-light rounded-circle btn-sm" href="./restaurants/{{this._id}}"
                   role="button">Detail</a>
-                <a class="btn btn-light rounded-circle btn-sm" href="#" role="button">Delete</a>
+                <form action="./restaurants/{{this._id}}/delete" style="display: inline;" method="POST">
+                  <button type="submit" class="btn btn-light rounded-circle btn-sm">Delete</button>
+                </form>
+
 
 
               </span>
