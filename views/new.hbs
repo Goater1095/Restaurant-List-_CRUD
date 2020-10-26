@@ -9,7 +9,7 @@
           <span class="text-secondary">
             中文名稱：
           </span>
-          <input type="text" name="name">
+          <input type="text" name="name" placeholder="必填" required>
         </p>
         <p class="mb-1">
           <span class="text-secondary">
@@ -21,43 +21,43 @@
           <span class="text-secondary">
             類別：
           </span>
-          <input type="text" name="category">
+          <input type="text" name="category" placeholder="必填" required>
         </p>
         <p class="mb-1">
           <span class="text-secondary">
             圖片網址：
           </span>
-          <input type="text" name="image">
+          <input type="url" name="image">
         </p>
         <p class="mb-1">
           <span class="text-secondary">
             地址：
           </span>
-          <input type="text" name="location">
+          <input type="text" name="location" placeholder="必填" required>
         </p>
         <p class="mb-1">
           <span class="text-secondary">
             電話：
           </span>
-          <input type="text" name="phone">
+          <input type="tel" name="phone" placeholder="必填" required>
         </p>
         <p class="mb-1">
           <span class="text-secondary">
             Google Map 位址：
           </span>
-          <input type="text" name="google_map">
+          <input type="url" name="google_map">
         </p>
         <p class="mb-1">
           <span class="text-secondary">
             評分：
           </span>
-          <input type="text" name="rating">
+          <input type="number" step="0.1" min="1" max="5" name="rating">
         </p>
         <p class="mb-1">
           <span class="text-secondary">
             描述：
           </span>
-          <input type="text" name="description">
+          <input type="text" name="description" class='w-100' style="height: 100px;">
         </p>
         <button type="submit" class="mt-2">確認新增</button>
       </form>
